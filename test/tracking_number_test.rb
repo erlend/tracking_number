@@ -23,6 +23,30 @@ class TrackingNumberTest < Minitest::Test
     end
   end
 
+  context "tracking number comparison" do
+    should "return true when tracking numbers are the same" do
+      t1 = TrackingNumber.new("123")
+      t2 = TrackingNumber.new("123")
+      assert_equal t1, t2
+    end
+
+    should "return false when tracking numbers are different" do
+      t1 = TrackingNumber.new("123")
+      t2 = TrackingNumber.new("321")
+      refute_equal t1, t2
+    end
+
+    should "return true when comparing with the tracking number as a string" do
+      t = TrackingNumber.new("123")
+      assert_equal t, "123"
+    end
+
+    should "return false when comparing with nil" do
+      t = TrackingNumber.new("123")
+      refute_equal t, nil
+    end
+  end
+
   context "tracking number search" do
     should "return two tracking numbers when given string with two" do
       s = TrackingNumber.search("Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 1Z879E930346834440 nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute 9611020987654312345672 dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.")

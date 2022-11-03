@@ -35,6 +35,10 @@ module TrackingNumber
       end
     end
 
+    def ==(other)
+      to_s == other.to_s
+    end
+
     def serial_number
       return match_group("SerialNumber") unless self.class.const_get("VALIDATION")
 
